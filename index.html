@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FFNickHub – Free Fire Nickname Generator (Hinglish)</title>
+  <meta name="description" content="FFNickHub – Free Fire ke liye stylish, pro, funny nicknames generate karo. One-click copy. NicFinder style fast tool."/>
+  <meta name="keywords" content="Free Fire nickname, FF Nickname Generator, stylish ff name, ff nickfinder"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    :root{
+      --bg:#0b0f19; --card:#121829; --pri:#6cf2b2; --txt:#e6e9ef; --mut:#9aa3b2;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    body{margin:0;background:linear-gradient(120deg,#0b0f19,#0f1530);color:var(--txt)}
+    header{position:sticky;top:0;backdrop-filter: blur(8px);background:rgba(11,15,25,.7);border-bottom:1px solid #1e2540}
+    .wrap{max-width:1100px;margin:auto;padding:16px}
+    .hero{display:grid;grid-template-columns:1fr;gap:16px;padding:24px 16px}
+    .card{background:linear-gradient(180deg,#121829,#0f1426);border:1px solid #1e2540;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    h1{font-size:28px;margin:0}
+    .tag{color:var(--mut)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap}
+    input,select,button{background:#0b1024;color:var(--txt);border:1px solid #1e2540;border-radius:12px;padding:12px 14px}
+    button.primary{background:linear-gradient(135deg,#6cf2b2,#5bdcff);color:#001b12;border:none;font-weight:700}
+    button.ghost{background:#0b1024}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .nick{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px dashed #26306a;border-radius:12px;background:#0b1024}
+    .nick span{font-weight:600;word-break:break-all}
+    .copy{cursor:pointer;border:none;background:#14205a;color:#bde6ff;border-radius:10px;padding:8px 10px}
+    .copy.ok{background:#1f6f55;color:#eafff6}
+    footer{color:var(--mut);padding:24px 16px}
+    .badges span{border:1px solid #1e2540;border-radius:999px;padding:6px 10px;margin-right:6px;font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <strong>FFNickHub</strong> <span class="tag">– Free Fire Nickname Generator (Hinglish)</span>
+    </div>
+  </header>
+
+  <main class="wrap hero">
+    <div class="card wrap">
+      <h1>Stylish Free Fire Nickname Generator 🔥</h1>
+      <p class="tag">NicFinder style – Pro, Stylish, Funny, Symbols ke saath. Ek click me copy karo.</p>
+
+      <div class="controls">
+        <input id="baseName" placeholder="Apna name likho (optional)"/>
+        <select id="category">
+          <option value="all">All</option>
+          <option value="pro">Pro</option>
+          <option value="stylish">Stylish</option>
+          <option value="funny">Funny</option>
+          <option value="symbols">Symbols</option>
+        </select>
+        <button class="primary" onclick="generate()">Generate</button>
+        <button class="ghost" onclick="shuffle()">Shuffle</button>
+      </div>
+
+      <div class="badges" style="margin:10px 0">
+        <span>Fast ⚡</span><span>Mobile Friendly 📱</span><span>One-Click Copy 📋</span>
+      </div>
+
+      <div id="list" class="grid"></div>
+    </div>
+
+    <section class="card wrap">
+      <h2>Kaise Use Kare?</h2>
+      <ol class="tag">
+        <li>Apna name likho (optional)</li>
+        <li>Category choose karo</li>
+        <li>Generate dabao → Copy karo → Free Fire me paste 😎</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    © 2026 FFNickHub • Free Fire Nickname Tool • Made for gamers
+  </footer>
+
+  <script>
+    const data = {
+      pro: ["ᎷᎡ々•ᴅᴇᴠɪʟ","ᴘʀᴏ•ᏦᎥᏞᏞᎬᏒ","ɢᴏᴅツʜᴀɴᴛᴇʀ","⚡ᏦᎥᏞᏞᎬᏒ⚡","ᏒᎥᎮ•ᏦᎥᏞᏞ"],
+      stylish: ["꧁༺𝕊𝕥𝕪𝕝𝕚𝕤𝕙༻꧂","𝓢𝓽𝔂𝓵𝓮★𝓑𝓸𝔂","༒ֆtyℓιѕн༒","ѕтyℓιѕн_κɪɴɢ","ᏚᎿᎽᏞᎥᏚᎻ★ᏰᎾᎽ"],
+      funny: ["NoobMaster69","LagKing","PotatoAim","LootLover","AFK_Warrior"],
+      symbols: ["★彡[ 𝓝𝓲𝓬𝓴 ]彡★","꧁༒☬𝓝𝓲𝓬𝓴☬༒꧂","『N』『i』『c』『k』","☯︎ＮＩＣＫ☯︎","𓆩𝓝𝓲𝓬𝓴𓆪"]
+    };
+
+    function stylize(base, nick){
+      if(!base) return nick;
+      return nick.replace(/Nick|𝓝𝓲𝓬𝓴|ＮＩＣＫ/gi, base);
+    }
+
+    function generate(){
+      const base = document.getElementById('baseName').value.trim();
+      const cat = document.getElementById('category').value;
+      let pool = [];
+      if(cat === 'all'){
+        pool = [...data.pro, ...data.stylish, ...data.funny, ...data.symbols];
+      } else {
+        pool = data[cat];
+      }
+      render(pool.slice().sort(()=>0.5-Math.random()).slice(0,12).map(n => stylize(base, n)));
+    }
+
+    function shuffle(){ generate(); }
+
+    function render(list){
+      const box = document.getElementById('list');
+      box.innerHTML = '';
+      list.forEach(n => {
+        const div = document.createElement('div');
+        div.className = 'nick';
+        const s = document.createElement('span');
+        s.textContent = n;
+        const b = document.createElement('button');
+        b.className = 'copy';
+        b.textContent = 'Copy';
+        b.onclick = async () => {
+          await navigator.clipboard.writeText(n);
+          b.textContent = 'Copied ✓';
+          b.classList.add('ok');
+          setTimeout(()=>{b.textContent='Copy'; b.classList.remove('ok');},1200);
+        };
+        div.appendChild(s); div.appendChild(b);
+        box.appendChild(div);
+      });
+    }
+
+    generate();
+  </script>
+</body>
+</html>

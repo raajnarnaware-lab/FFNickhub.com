@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tumharausername.github.io/repository-name/sitemap.xml
+Sitemap: https://.raajnarnaware-lab.                                            github.io/FFNickhub.com/sitemap.xml

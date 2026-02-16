@@ -1,15 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Stylish Names</title>
+<meta charset="UTF-8">
+<title>Nicknames for Freefires - Nickhub</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  margin:0;
+  padding:0;
+}
+
+.header{
+  padding:15px;
+  text-align:center;
+  background:#f5f5f5;
+}
+
+.search-box{
+  width:80%;
+  padding:10px;
+  font-size:16px;
+}
+
+.search-btn{
+  padding:10px 15px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+.ad-box{
+  text-align:center;
+  padding:30px;
+  background:#fafafa;
+}
+
+.ad-box h2{
+  font-size:28px;
+}
+
+.diamond{
+  font-size:40px;
+  margin:20px 0;
+}
+
+.start-btn{
+  background:#f59e0b;
+  color:white;
+  padding:15px 40px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+.section{
+  padding:20px;
+}
+
+.nickname{
+  padding:15px;
+  margin:10px 0;
+  border-bottom:1px solid #ddd;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.nickname:hover{
+  background:#f0f0f0;
+}
+
+.footer{
+  background:#f5f5f5;
+  padding:20px;
+  font-size:14px;
+}
+a{
+  text-decoration:none;
+  color:#2563eb;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Welcome to Stylish Names Page</h1>
+<div class="header">
+  <input type="text" id="search" class="search-box" placeholder="Search nickname...">
+  <button class="search-btn" onclick="searchNick()">Find</button>
+</div>
 
-<p>This is Nickhub Stylish Page 🔥</p>
+<div class="ad-box">
+  <h2>GET FREE DIAMONDS</h2>
+  <div class="diamond">💎 5,000</div>
+  <button class="start-btn">START</button>
+</div>
 
+<div class="section">
+<h2>Nicknames for Freefires</h2>
+
+<div class="nickname" onclick="copyText(this)">×͜×ㅤ𝙰𝙻𝙾𝙽𝙴ㅤ𝙱𝙾𝚈 亗</div>
+<div class="nickname" onclick="copyText(this)">ƊᴏㅤσʀㅤƊɪᴇ❸❻✓</div>
+<div class="nickname" onclick="copyText(this)">ꫝʟᴏɴᴇ ᅠGꫝᴍᴇʀᅠ〆</div>
+<div class="nickname" onclick="copyText(this)">ᏞᴇㅤxㅤᏞᴏʀᴅㅤ〆</div>
+<div class="nickname" onclick="copyText(this)">亗 𝚁 𝙾 𝙻 𝙴 𝚇 ☯︎</div>
+<div class="nickname" onclick="copyText(this)">╰‿╯ㅤBLACKㅤEYES</div>
+<div class="nickname" onclick="copyText(this)">Theメʙoʏz࿐</div>
+<div class="nickname" onclick="copyText(this)">❖Ƭʜᴇ𝕃𝕖𝕘𝕖𝕟𝕕❾❾✓</div>
+
+</div>
+
+<div class="section">
+<h3>TOOLS</h3>
+<p><a href="#">Stylish text symbols</a></p>
+<p><a href="#">Names mixer</a></p>
+<p><a href="#">Nickname to symbols</a></p>
+<p><a href="#">Cool text generator</a></p>
+</div>
+
+<div class="section">
+<h3>CATEGORIES</h3>
+<p><a href="#">Male names</a></p>
+<p><a href="#">Women's names</a></p>
+<p><a href="#">Password generator</a></p>
+<p><a href="#">Domain names</a></p>
+</div>
+
+<div class="footer">
 <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script>
+function copyText(element){
+  navigator.clipboard.writeText(element.innerText);
+  alert("Copied: " + element.innerText);
+}
+
+function searchNick(){
+  let input = document.getElementById("search").value.toLowerCase();
+  let names = document.getElementsByClassName("nickname");
+
+  for(let i=0;i<names.length;i++){
+    if(names[i].innerText.toLowerCase().includes(input)){
+      names[i].style.display="block";
+    } else {
+      names[i].style.display="none";
+    }
+  }
+}
+</script>
 
 </body>
 </html>

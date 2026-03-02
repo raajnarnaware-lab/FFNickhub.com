@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://.raajnarnaware-lab.                                            github.io/FFNickhub.com/sitemap.xml
-
